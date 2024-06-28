@@ -1,10 +1,36 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001'; 
+const API_URL = 'http://localhost:3001';
+
+
+const getToken = () => {
+  return localStorage.getItem('token'); 
+};
+
+
+const axiosInstance = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:3001/products');
+    const response = await axiosInstance.get('/products');
     return response.data;
   } catch (error) {
     console.error(error);
@@ -14,7 +40,7 @@ export const getProducts = async () => {
 
 export const getProductById = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/products/${id}`);
+    const response = await axiosInstance.get(`/products/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -24,7 +50,7 @@ export const getProductById = async (id) => {
 
 export const addProduct = async (product) => {
   try {
-    const response = await axios.post(`${API_URL}/products`, product);
+    const response = await axiosInstance.post('/products', product);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -34,7 +60,7 @@ export const addProduct = async (product) => {
 
 export const updateProduct = async (id, product) => {
   try {
-    const response = await axios.put(`${API_URL}/products/${id}`, product);
+    const response = await axiosInstance.put(`/products/${id}`, product);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -44,9 +70,10 @@ export const updateProduct = async (id, product) => {
 
 export const deleteProduct = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/products/${id}`);
+    const response = await axiosInstance.delete(`/products/${id}`);
     return response.data;
   } catch (error) {
-    return false;
+    console.error(error);
+    throw error;
   }
 };

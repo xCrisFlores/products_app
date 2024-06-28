@@ -63,7 +63,6 @@ export const ProductProvider = ({ children }) => {
           setProducts(prevProducts => prevProducts.filter(product => product.id !== id));
         }
       }
-      setIndex(prevIndex => prevIndex + 1);
     } catch (error) {
       console.error(error);
     }

@@ -52,7 +52,7 @@ const Editar = () => {
         <div className='alert_container'>
           <p className='primary_lbl'>El producto se ha ediatdo correctamente</p>
           <div className='btn_div'>
-            <button onClick={() => {setShowAlert(false);  navigate('/');}} className='form_btn'>
+            <button onClick={() => {setShowAlert(false);  navigate('/dashboard');}} className='form_btn'>
               Cerrar
             </button>
           </div>
