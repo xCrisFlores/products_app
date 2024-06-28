@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, HttpException, HttpStatus, UseGuards, Request } from '@nestjs/common';
 import { AppService } from './app.service';
+import { JwtAuthGuard } from './auth/auth.guard';
 
 @Controller('products')
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
+  
   @Get()
   async getProducts(): Promise<any> {
     try {
@@ -14,6 +15,7 @@ export class AppController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getProductById(@Param('id') id: string): Promise<any> {
     try {
@@ -23,6 +25,7 @@ export class AppController {
     }
   }
 
+  @UseGuards(JwtAuthGuard) // Protege esta ruta con el guardia JWT
   @Post()
   async newProduct(@Body() product: any): Promise<any> {
     try {
@@ -32,6 +35,7 @@ export class AppController {
     }
   }
 
+  @UseGuards(JwtAuthGuard) // Protege esta ruta con el guardia JWT
   @Put(':id')
   async updateProduct(@Param('id') id: string, @Body() product: any): Promise<any> {
     try {
@@ -41,6 +45,7 @@ export class AppController {
     }
   }
 
+  @UseGuards(JwtAuthGuard) // Protege esta ruta con el guardia JWT
   @Delete(':id')
   async deleteProduct(@Param('id') id: string): Promise<any> {
     try {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useProductContext } from '../ProductContext';
 import '../styles/styles.css'; 
 
-function Agregar() {
+const Agregar = () => {
   const navigate = useNavigate();
   const { newProduct } = useProductContext();
   const [title, setTitle] = useState("");

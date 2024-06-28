@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useProductContext } from '../ProductContext';
 import '../styles/styles.css'; 
 
-function Editar() {
+const Editar = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { editProduct, getProduct } = useProductContext();
@@ -15,6 +15,7 @@ function Editar() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        console.log(productId);
         const data = await getProduct(productId);
         setTitle(data.title);
         setDescription(data.description);

@@ -208,6 +208,18 @@
     height: 100px; 
 }
 
-.trs{
-    background-color: #89ff5b;
+.disabled_btn {
+   display: none;
+}
+
+.guest_link{
+    text-decoration: none;
+    font-family: Helvetica;
+    color:#9a88ff;
+}
+
+.guest_link:hover{
+
+    color:#7a67e2;
+
 }
