@@ -121,11 +121,16 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     z-index: 100px;
   }
+
+  .div_btn {
+    width: 110px;
+    text-align: center;
+    height: 100%;
+  }
   
   .button_icon {
     width: 80px;
     height: 80px;
-    
   }
 
 .add_container{
@@ -180,7 +185,7 @@
 }
 
 .add_lbl {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bolder;
     font-family: "Helvetica";
 }
@@ -267,11 +272,11 @@
 .guest_link{
     text-decoration: none;
     font-family: Helvetica;
-    color:#9a88ff;
+    color: rgb(165, 150, 255);
 }
 
 .guest_link:hover{
 
-    color:#7a67e2;
+    color: rgb(133, 115, 238);
 
 }
